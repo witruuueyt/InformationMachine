@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Can
+  - Align
+  - g4a firstlight
+  - g4a sun
+  - g4a secondlight
   layers:
   - Default
   - TransparentFX
@@ -18,16 +23,16 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - g4a Debug
+  - g4a Controller
+  - g4a Lamps
+  - g4a SensorMU
+  - g4a TransportMU
+  - g4a Sensor
+  - g4a Transport
+  - g4a MU
+  - g4a Postprocessing
+  - g4a Snapping
   - 
   - 
   - 
