@@ -16,7 +16,7 @@ public class CurrentOrders: MonoBehaviour
 
     public TMP_Text info;                                 
 
-    public void ReceieveData(string CurrentOrderStringPHPMany)
+    public void ReceieveCData(string CurrentOrderStringPHPMany)
     {
         string newCurrentOrderStringPHPMany = fixJson(CurrentOrderStringPHPMany);     
 
@@ -74,7 +74,7 @@ public class CurrentOrders: MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    ReceieveData(webRequest.downloadHandler.text);
+                    ReceieveCData(webRequest.downloadHandler.text);
                     Debug.LogError("Current Orders Success");
 
                     break;
