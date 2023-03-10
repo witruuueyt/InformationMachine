@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 /// <summary> 
@@ -30,9 +31,9 @@ public class SendOrder : MonoBehaviour
 	// Additional part numbers can be found on the Festo PC.   
 
 	public string partNumber;
-	public string qty;
-
-	public string newOrderMessage;
+	public int qty;
+    public TMP_InputField inputField;
+    public string newOrderMessage;
 	#endregion
 
 
@@ -128,10 +129,17 @@ public class SendOrder : MonoBehaviour
 	/// <summary> 
 	public void SendOrderToFactory()
 	{
-		newOrderMessage = "444;RequestID=0;MClass=101;MNo=2;ErrorState=0;#PNo= " + partNumber + ";#Aux1Int=" + qty.ToString() + "\r";
-		SendMessageToServer(newOrderMessage);
-		Debug.Log("new phone");
-	}
+		if (int.TryParse(inputField.text, out qty))
+		{
+			newOrderMessage = "444;RequestID=0;MClass=101;MNo=2;ErrorState=0;#PNo= " + partNumber + ";#Aux1Int=" + qty.ToString() + "\r";
+			SendMessageToServer(newOrderMessage);
+			Debug.Log("new phone");
+		}
+        else
+        {
+            Debug.LogError("Invalid quantity value: " + inputField.text);
+        }
+    }
 
   //  private void Update()
   //  {
