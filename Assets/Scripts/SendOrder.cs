@@ -34,6 +34,8 @@ public class SendOrder : MonoBehaviour
 	public int qty;
     public TMP_InputField inputField;
     public string newOrderMessage;
+	public TMP_Text output;
+	public TMP_Text feedbackText;
 	#endregion
 
 
@@ -124,20 +126,73 @@ public class SendOrder : MonoBehaviour
 		}
 	}
 
-	/// <summary> 
-	// Call this method from somewhere in your app to place a new order
-	/// <summary> 
-	public void SendOrderToFactory()
+	public void Item210()
+	{
+		partNumber = "210";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item214()
+    {
+        partNumber = "214";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item1200()
+    {
+        partNumber = "1200";
+		output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item1201()
+    {
+        partNumber = "1201";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item1210()
+    {
+        partNumber = "1210";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item3001()
+    {
+        partNumber = "3001";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item3002()
+    {
+        partNumber = "3002";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item3003()
+    {
+        partNumber = "3003";
+        output.text = "Order Number: " + partNumber;
+    }
+
+    public void Item3005()
+    {
+        partNumber = "3005";
+        output.text = "Order Number: " + partNumber;
+    }
+    /// <summary> 
+    // Call this method from somewhere in your app to place a new order
+    /// <summary> 
+    public void SendOrderToFactory()
 	{
 		if (int.TryParse(inputField.text, out qty))
 		{
 			newOrderMessage = "444;RequestID=0;MClass=101;MNo=2;ErrorState=0;#PNo= " + partNumber + ";#Aux1Int=" + qty.ToString() + "\r";
 			SendMessageToServer(newOrderMessage);
-			Debug.Log("new phone");
+			feedbackText.text = "Successful Ordered: " + "\r\n" + partNumber + ". Qty: " + qty.ToString();
 		}
         else
         {
-            Debug.LogError("Invalid quantity value: " + inputField.text);
+            feedbackText.text = "Invalid quantity value: " + inputField.text;
         }
     }
 
