@@ -2,7 +2,7 @@ using UnityEngine;
 using game4automation;
 using TMPro;
 
-public class ExampleNodeReader : MonoBehaviour
+public class Magazine : MonoBehaviour
 {
 
     [Header("Factory Machine")]
@@ -32,7 +32,7 @@ public class ExampleNodeReader : MonoBehaviour
         Debug.LogWarning("Connected to Factory Machine " + factoryMachineID);
         var subscription = Interface.Subscribe(nodeID, NodeChanged);
         dataFromOPCUANode = subscription.ToString();
-        Debug.LogError(dataFromOPCUANode);
+        Debug.Log(dataFromOPCUANode);
         //digitalTwinRFIDFeedbackTMP.text = RFIDInfo;
         //uiRFIDFeedbackTMP.text = RFIDInfo;        
     }
@@ -50,12 +50,19 @@ public class ExampleNodeReader : MonoBehaviour
     public void NodeChanged(OPCUANodeSubscription sub, object value)
     {
         dataFromOPCUANode = value.ToString();
-        Debug.Log("Factory machine " + factoryMachineID + " just registered " + nodeBeingMonitored + " as " + dataFromOPCUANode);
+        
     }
 
 
     private void Update()
     {
-        uiFeedbackTMP.text = "Registered " + nodeBeingMonitored + " as " + dataFromOPCUANode;
+        if (dataFromOPCUANode.Equals("True"))
+        {
+            uiFeedbackTMP.text = "Magazine is loaded";
+        }
+        else
+        {
+            uiFeedbackTMP.text = "Magazine is empty, please fill up";
+        }
     }
 }

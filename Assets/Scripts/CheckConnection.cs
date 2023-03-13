@@ -9,8 +9,13 @@ public class CheckConnection : MonoBehaviour
     [Header("Factory Interfaces")]
     public OPCUA_Interface[] opcuaInterfaces;
     public TMP_Text feedbackText;
-    string string1 = "";
     
+    string string1 = "";
+
+    private void Start()
+    {
+        CheckConnectionWithMachines();
+    }
     //runs through all of the factory interfaces checking for connection
     public void CheckConnectionWithMachines()
     {

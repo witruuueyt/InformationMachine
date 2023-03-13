@@ -1,8 +1,10 @@
-using UnityEngine;
 using game4automation;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
-public class ExampleNodeReader : MonoBehaviour
+public class Emergency : MonoBehaviour
 {
 
     [Header("Factory Machine")]
@@ -15,10 +17,12 @@ public class ExampleNodeReader : MonoBehaviour
     public string nodeID;
 
     //public TMP_Text digitalTwinFeedbackTMP;
-    public TMP_Text uiFeedbackTMP;
+    public GameObject _objectToChangeColour;
     public string dataFromOPCUANode;
 
+    public Material _connectedMaterial;
 
+    public Material _disconnectedMaterial;
     void Start()
     {
         Interface.EventOnConnected.AddListener(OnInterfaceConnected);
@@ -32,7 +36,7 @@ public class ExampleNodeReader : MonoBehaviour
         Debug.LogWarning("Connected to Factory Machine " + factoryMachineID);
         var subscription = Interface.Subscribe(nodeID, NodeChanged);
         dataFromOPCUANode = subscription.ToString();
-        Debug.LogError(dataFromOPCUANode);
+        Debug.Log(dataFromOPCUANode);
         //digitalTwinRFIDFeedbackTMP.text = RFIDInfo;
         //uiRFIDFeedbackTMP.text = RFIDInfo;        
     }
@@ -50,12 +54,19 @@ public class ExampleNodeReader : MonoBehaviour
     public void NodeChanged(OPCUANodeSubscription sub, object value)
     {
         dataFromOPCUANode = value.ToString();
-        Debug.Log("Factory machine " + factoryMachineID + " just registered " + nodeBeingMonitored + " as " + dataFromOPCUANode);
+        Debug.Log(dataFromOPCUANode);
     }
 
 
     private void Update()
     {
-        uiFeedbackTMP.text = "Registered " + nodeBeingMonitored + " as " + dataFromOPCUANode;
+        if(dataFromOPCUANode.Equals("True"))
+        {
+            _objectToChangeColour.GetComponent<MeshRenderer>().material = _connectedMaterial;
+        }
+        else
+        {
+            _objectToChangeColour.GetComponent<MeshRenderer>().material = _disconnectedMaterial;
+        }
     }
 }

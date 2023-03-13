@@ -1,4 +1,80 @@
-﻿//using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using game4automation;
+using UnityEditor.PackageManager.Requests;
+using UnityEngine.Networking;
+
+public class Robotino : MonoBehaviour
+{
+    public string websiteURL;
+
+    public void OnButtonClick()
+    {
+        StartCoroutine(OpenURL());
+    }
+
+    private IEnumerator OpenURL()
+    {
+        UnityWebRequest webRequest = UnityWebRequest.Get(websiteURL);
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Website opened successfully");
+            
+        }
+        else
+        {
+            Debug.LogError("Error opening website: " + webRequest.error);
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//using UnityEngine;
 //using UnityEngine.UI;
 //using UnityEngine.Networking;
 //using game4automation;

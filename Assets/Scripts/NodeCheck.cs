@@ -2,7 +2,7 @@ using UnityEngine;
 using game4automation;
 using TMPro;
 
-public class ExampleNodeReader : MonoBehaviour
+public class NodeCheck : MonoBehaviour
 {
 
     [Header("Factory Machine")]
@@ -32,7 +32,7 @@ public class ExampleNodeReader : MonoBehaviour
         Debug.LogWarning("Connected to Factory Machine " + factoryMachineID);
         var subscription = Interface.Subscribe(nodeID, NodeChanged);
         dataFromOPCUANode = subscription.ToString();
-        Debug.LogError(dataFromOPCUANode);
+        Debug.Log(dataFromOPCUANode);
         //digitalTwinRFIDFeedbackTMP.text = RFIDInfo;
         //uiRFIDFeedbackTMP.text = RFIDInfo;        
     }
